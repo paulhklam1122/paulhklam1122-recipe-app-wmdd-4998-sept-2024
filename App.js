@@ -1,13 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { GluestackUIProvider } from '@gluestack-ui/themed'
+import { StatusBar } from 'expo-status-bar'
+import { StyleSheet, Text } from 'react-native'
+import { config } from '@gluestack-ui/config'
+import Header from './src/components/layout/Header'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import RecipesContainer from './src/components/containers/RecipesContainer'
+import AppStack from './src/components/stacks/AppStack'
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <SafeAreaProvider>
+      <GluestackUIProvider config={config}>
+        {/* <Header /> */}
+        {/* <RecipesContainer /> */}
+        <AppStack />
+        <StatusBar style='auto' />
+      </GluestackUIProvider>
+    </SafeAreaProvider>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -15,6 +25,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    justifyContent: 'center'
+  }
+})
+
+export default App
